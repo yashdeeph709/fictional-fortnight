@@ -3,8 +3,42 @@
  */
 package com.fortnight;
 
+import java.io.IOException;
+
+import com.fortnight.cmdline.Command;
+import com.fortnight.cmdline.CreateNapCommand;
+import com.fortnight.cmdline.LinkGoogleAccount;
+import com.fortnight.cmdline.LinkTodoistAccount;
+import com.fortnight.cmdline.Menu;
+
 public class App {
-    public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+    public static void main(String[] args) throws IOException {
+    	Menu menu = new Menu("Welcome to fortnight");
+    	menu.addOption("Create a Nap");
+    	menu.addOption("Link Your Google Account");
+    	menu.addOption("Link Your Todoist Account");
+    	menu.addOption("Exit");
+    	int selectedOption = menu.run();
+    	while(selectedOption!=4) {
+			Command command = null;
+			switch(selectedOption) {
+				case 1:
+				command = new CreateNapCommand();
+				break;
+				case 2:
+				command = new LinkGoogleAccount();
+				break;
+				case 3:
+				command = new LinkTodoistAccount();
+				break;
+				default:
+					System.exit(0);
+				break;	
+			}
+			if(command!=null) {
+				command.execute();
+			}
+			selectedOption = menu.run();
+    	}
     }
 }
