@@ -3,6 +3,7 @@
  */
 package com.fortnight;
 
+
 import java.io.IOException;
 
 import com.fortnight.cmdline.Command;
@@ -10,10 +11,20 @@ import com.fortnight.cmdline.CreateNapCommand;
 import com.fortnight.cmdline.LinkGoogleAccount;
 import com.fortnight.cmdline.LinkTodoistAccount;
 import com.fortnight.cmdline.Menu;
+import com.fortnight.config.Config;
+
 
 public class App {
-    public static void main(String[] args) throws IOException {
-    	Menu menu = new Menu("Welcome to fortnight");
+    public static void main(String[] args) throws IOException{
+    	if(args.length<1) {
+    		System.out.println("Usage: <app> <config-file-path>");
+    	}
+    	Config config = Config.getInstance();
+    	String file = "C:\\Users\\yhinge\\Desktop\\Bubu\\fictional-fortnight\\test.properties";
+    	//config.load(args.length>0?args[0]:file);
+    	config.load(file);
+
+    	Menu menu = new Menu(config.getProperty("banner"));
     	menu.addOption("Create a Nap");
     	menu.addOption("Link Your Google Account");
     	menu.addOption("Link Your Todoist Account");

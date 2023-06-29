@@ -34,7 +34,7 @@ public class Menu {
     	int selectedOption=0;
     	while(selectedOption<1 || selectedOption>options.size()) {
 			for(Option option: options) {
-				System.out.println(option.getIndex()+".) "+option.getDescription());
+				System.out.println(option.getIndex()+") "+option.getDescription());
 			}
 			try {
 				selectedOption = Integer.parseInt(br.readLine());
