@@ -25,7 +25,7 @@ public class Config {
 	}
 
 	public void load(String path) {
-		logger.info("Loading file for configuration:",path);
+		logger.info("Loading file for configuration:{}",path);
 		File file = new File(path);
 		FileInputStream fis=null;
 		Properties properties=new Properties();
@@ -47,7 +47,7 @@ public class Config {
 	}
 	
 	public String getProperty(String propertyName) {
-		logger.debug("Value for property:{} is value:{}",propertyName,properties.getProperty(propertyName));
+		logger.trace("Value for property:{} is value:{}",propertyName,properties.getProperty(propertyName));
 		return properties.getProperty(propertyName);
 	}
 	

@@ -33,6 +33,7 @@ public class Menu {
 	public int run() throws IOException {
     	int selectedOption=0;
     	while(selectedOption<1 || selectedOption>options.size()) {
+    		System.out.println(message);
 			for(Option option: options) {
 				System.out.println(option.getIndex()+") "+option.getDescription());
 			}

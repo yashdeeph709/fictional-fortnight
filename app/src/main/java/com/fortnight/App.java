@@ -15,14 +15,25 @@ import com.fortnight.config.Config;
 
 
 public class App {
+	public static Config config;
+
+	public static void init(String args[]) {
+		// Load Application Configuration File
+    	config = Config.getInstance();
+    	String file = "C:\\Users\\yhinge\\Desktop\\Bubu\\fictional-fortnight\\test.properties";
+    	if(args.length>0) {
+			config.load(args[0]);
+    	}else {
+			config.load(file);
+    	}
+	}
+
     public static void main(String[] args) throws IOException{
     	if(args.length<1) {
-    		System.out.println("Usage: <app> <config-file-path>");
+    		//System.out.println("Usage: <app> <config-file-path>");
+    		//System.exit();
     	}
-    	Config config = Config.getInstance();
-    	String file = "C:\\Users\\yhinge\\Desktop\\Bubu\\fictional-fortnight\\test.properties";
-    	//config.load(args.length>0?args[0]:file);
-    	config.load(file);
+    	init(args);
 
     	Menu menu = new Menu(config.getProperty("banner"));
     	menu.addOption("Create a Nap");
@@ -51,5 +62,10 @@ public class App {
 			}
 			selectedOption = menu.run();
     	}
+    }
+
+    //Free up resources at the time of shutdown
+    public static void shutdown() {
+    	
     }
 }
